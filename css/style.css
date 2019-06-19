@@ -64,6 +64,13 @@ header h1 {
     }
 }
 
+.error {
+    background: red;
+    color: #ffffff;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
 #input .shout-btn {
     padding: 5px;
     margin-bottom: 20px;

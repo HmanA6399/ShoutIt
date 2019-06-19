@@ -2,9 +2,8 @@
     include 'database.php';
 ?>
 <?php 
-    $qu = "SELECT * FROM shouts";
+    $qu = "SELECT * FROM shouts ORDER BY id DESC";
     $shouts = mysqli_query($conn, $qu);
-    print_r($shouts);
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>SHOUIT! Shoutbox</title>
 </head>
 <body>
@@ -29,15 +28,20 @@
                     <strong><?php echo $row['user'] ?></strong>: 
                     <?php echo $row['message'] ?> 
                 </li>
-            <?php endwhile ?>
+            <?php endwhile; ?>
             </ul>
         </div>
         <div id="input">
+            <?php if (isset($_GET['error'])) : ?>
+                <div class="error">
+                    <?php echo $_GET['error']; ?>
+                </div>
+            <?php endif; ?>
             <form action="process.php" method="post">
                 <input type="text" name="user" placeholder="Enter Your Name">
                 <input type="text" name="msg" placeholder="Enter Your Message">
+                <input class="shout-btn" type="submit" name="submit" value="Shout it Out !">
             </form>
-            <input class="shout-btn" type="submit" name="submit" value="Shout it Out !">
         </div>
     </div>
 </body>
